@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090d1d">
+  <meta name="description" content="Calculadora 3D inmersiva con temas personalizables y funciones científicas.">
+  <title>Calculadora 3D Inmersiva</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body data-theme="glass">
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Calculadora 3D, inicio">
+        <span class="brand-mark" aria-hidden="true">◇</span>
+        <span><strong>Calculadora</strong><small>3D INTERACTIVA</small></span>
+      </a>
+      <div class="header-actions">
+        <label class="theme-control">
+          <span class="sr-only">Seleccionar tema</span>
+          <select id="themeSelect" aria-label="Seleccionar tema visual">
+            <option value="glass">Cristal Aero</option>
+            <option value="stone">Tallado en piedra</option>
+            <option value="aesthetic">Aesthetic</option>
+            <option value="modern">Moderno Premium</option>
+            <option value="cyber">Cyberpunk Neon</option>
+            <option value="aurora">Aurora Dream</option>
+          </select>
+        </label>
+        <button class="icon-button" id="motionToggle" type="button" aria-pressed="false" title="Alternar efectos 3D">◈<span class="sr-only">Alternar efectos 3D</span></button>
+      </div>
+    </header>
+
+    <section class="intro">
+      <p class="eyebrow">PRECISIÓN CON OTRA DIMENSIÓN</p>
+      <h1>Calcula con <span>estilo.</span></h1>
+      <p class="intro-copy">Una experiencia matemática inmersiva. Elige tu ambiente, explora las funciones científicas y dale profundidad a cada operación.</p>
+    </section>
+
+    <section class="workspace" aria-label="Calculadora">
+      <aside class="side-panel">
+        <div class="panel-heading"><span class="live-dot"></span> AMBIENTE ACTIVO</div>
+        <h2 id="themeName">Cristal Aero</h2>
+        <p id="themeDescription">Transparencias, reflejos y profundidad luminosa.</p>
+        <div class="theme-swatches" aria-label="Temas disponibles">
+          <button class="swatch active" data-theme-choice="glass" aria-label="Tema Cristal Aero" title="Cristal Aero"></button>
+          <button class="swatch" data-theme-choice="stone" aria-label="Tema Tallado en piedra" title="Tallado en piedra"></button>
+          <button class="swatch" data-theme-choice="aesthetic" aria-label="Tema Aesthetic" title="Aesthetic"></button>
+          <button class="swatch" data-theme-choice="modern" aria-label="Tema Moderno Premium" title="Moderno Premium"></button>
+          <button class="swatch" data-theme-choice="cyber" aria-label="Tema Cyberpunk Neon" title="Cyberpunk Neon"></button>
+          <button class="swatch" data-theme-choice="aurora" aria-label="Tema Aurora Dream" title="Aurora Dream"></button>
+        </div>
+        <div class="side-note">
+          <span aria-hidden="true">✦</span>
+          <p>Cambia de tema cuando quieras. La interfaz adapta sus materiales, luces y sombras.</p>
+        </div>
+        <div class="keyboard-hint"><kbd>Enter</kbd> calcular <kbd>Esc</kbd> limpiar</div>
+      </aside>
+
+      <section class="calculator-wrap">
+        <div class="calculator" id="calculator">
+          <div class="calc-topline">
+            <span class="calc-label"><span class="mini-gem">◆</span> CALC 3D</span>
+            <div class="calc-tools">
+              <button class="mini-button" id="angleToggle" type="button" aria-label="Cambiar entre grados y radianes" title="Cambiar unidad angular">DEG</button>
+              <button class="mini-button" id="historyToggle" type="button" aria-label="Mostrar historial" title="Historial">↺</button>
+            </div>
+          </div>
+          <div class="display" aria-live="polite" aria-atomic="true">
+            <div class="display-meta"><span id="modeLabel">ESTÁNDAR</span><span id="expressionPreview"></span></div>
+            <div class="expression" id="expression" aria-label="Expresión">0</div>
+            <div class="result" id="result" aria-label="Resultado">0</div>
+          </div>
+
+          <div class="keypad" id="keypad">
+            <button class="key utility" data-action="clear">AC</button>
+            <button class="key utility" data-action="delete" aria-label="Borrar último carácter">⌫</button>
+            <button class="key utility" data-value="%">%</button>
+            <button class="key operator" data-value="÷">÷</button>
+
+            <button class="key scientific" data-value="sin(">sin</button>
+            <button class="key scientific" data-value="cos(">cos</button>
+            <button class="key scientific" data-value="tan(">tan</button>
+            <button class="key operator" data-value="×">×</button>
+
+            <button class="key scientific" data-value="sqrt(">√</button>
+            <button class="key scientific" data-value="^">xʸ</button>
+            <button class="key scientific" data-value="(">(</button>
+            <button class="key scientific" data-value=")">)</button>
+
+            <button class="key" data-value="7">7</button><button class="key" data-value="8">8</button><button class="key" data-value="9">9</button><button class="key operator" data-value="−">−</button>
+            <button class="key" data-value="4">4</button><button class="key" data-value="5">5</button><button class="key" data-value="6">6</button><button class="key operator" data-value="+">+</button>
+            <button class="key" data-value="1">1</button><button class="key" data-value="2">2</button><button class="key" data-value="3">3</button><button class="key scientific" data-value="pi">π</button>
+            <button class="key zero" data-value="0">0</button><button class="key" data-value=".">.</button><button class="key scientific" data-value="e">e</button><button class="key equals" data-action="equals">=</button>
+          </div>
+          <div class="calc-footer"><span>PRECISIÓN DIGITAL</span><span>● SISTEMA ACTIVO</span></div>
+        </div>
+        <div class="history-panel" id="historyPanel" hidden>
+          <div class="history-header"><strong>Historial</strong><button id="clearHistory" type="button">Limpiar</button></div>
+          <ol id="historyList"><li class="empty-history">Tus operaciones aparecerán aquí.</li></ol>
+        </div>
+      </section>
+    </section>
+
+    <section class="feature-row" aria-label="Características">
+      <article><span class="feature-icon">✧</span><div><h3>Seis ambientes</h3><p>Materiales y paletas que transforman la experiencia.</p></div></article>
+      <article><span class="feature-icon">⌘</span><div><h3>Modo científico</h3><p>Trigonometría, raíces, potencias y constantes.</p></div></article>
+      <article><span class="feature-icon">▣</span><div><h3>Diseño adaptable</h3><p>Interfaz optimizada para escritorio, tablet y móvil.</p></div></article>
+    </section>
+    <footer><span>CALCULADORA 3D · V1.0</span><span>Hecha para explorar y aprender.</span></footer>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
